@@ -67,12 +67,12 @@ jobs:
           mkdir -p "$PLUG_DIR"
           # Copy only the plugin and its project-built dependencies
           # cp -vR pst/* "$PLUG_DIR" || true
-          rsync -avrt --exclude 'cfg/' pst/ $PLUG_DIR
-          cp -avR pst/cfg/ "$OUT_DIR/cfg/"
+          rsync -avrt pst/Build/ $OUT_DIR
+          #cp -avR pst/Build/cfg/ "$OUT_DIR/cfg/"
           # (Optional) include configs if repo provides any
-          if [ -d pst/cfg ]; then
-            cp -vr pst/cfg/* "$OUT_DIR/cfg/" || true
-          fi
+          # if [ -d pst/cfg ]; then
+          #   cp -vr pst/cfg/* "$OUT_DIR/cfg/" || true
+          # fi
 
       - name: Show resulting structure (for logs)
         run: |
