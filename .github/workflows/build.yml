@@ -9,9 +9,11 @@ permissions:
   contents: write
 
 env:
-  METAMOD_URL: https://mms.alliedmods.net/mmsdrop/2.0/mmsource-2.0.0-git1366-linux.tar.gz
-  CSS_URL: https://github.com/roflmuffin/CounterStrikeSharp/releases/download/v1.0.340/counterstrikesharp-with-runtime-linux-1.0.340.zip
+  METAMOD_URL_LINUX: https://mms.alliedmods.net/mmsdrop/2.0/mmsource-2.0.0-git1366-linux.tar.gz
+  CSS_URL_LINUX: https://github.com/roflmuffin/CounterStrikeSharp/releases/download/v1.0.340/counterstrikesharp-with-runtime-linux-1.0.340.zip
   PST_REPO: https://github.com/Letaryat/poor-sharptimer.git
+  STFIXES_LINUX: https://github.com/SharpTimer/STFixes-metamod/releases/download/9-23/stfixes-metamod-9-23-linux.zip
+  MOVUNLOCKER_LINUX: https://github.com/Source2ZE/MovementUnlocker/releases/download/v1.8/MovementUnlocker-v1.8-linux.tar.gz
   PST_BRANCH: dev
   OUT_DIR: bundle
   ZIP_NAME: metamod-css-pst-bundle.zip
@@ -32,18 +34,30 @@ jobs:
           mkdir -p "$OUT_DIR"
 
       - name: Download Metamod
-        run: curl -L "$METAMOD_URL" -o mmsource.tar.gz
+        run: curl -L "$METAMOD_URL_LINUX" -o mmsource.tar.gz
 
       - name: Extract Metamod into addons/metamod/
         run: tar -xzf mmsource.tar.gz -C "$OUT_DIR"
+      
 
       - name: Download CounterStrikeSharp (with runtime)
-        run: curl -L "$CSS_URL" -o css.zip
+        run: curl -L "$CSS_URL_LINUX" -o css.zip
 
       - name: Extract CounterStrikeSharp into bundle
         run: unzip -q css.zip -d "$OUT_DIR"
 
-      # ---------- PoorSharpTimer (.NET) ----------
+      - name: Download STFixes-MetaMod
+        run: curl -L "$STFIXES_LINUX" -o stfixes.zip
+
+      - name: Extract STFixes-MetaMod into bundle
+        run: unzip -q stfixes.zip -d "$OUT_DIR"
+
+      - name: Download MovementUnlocker
+        run: curl -L "$MOVUNLOCKER_LINUX" -o movunlocker.zip
+
+      - name: Extract MovementUnlocker into bundle
+        run: unzip -q movunlocker.zip -d "$OUT_DIR"
+
       - name: Set up .NET
         uses: actions/setup-dotnet@v4
         with:
