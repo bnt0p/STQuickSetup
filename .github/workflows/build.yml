@@ -71,7 +71,7 @@ jobs:
         run: curl -L "$CS2_TAGS" -o cs2-tags.zip
 
       - name: Extract CS2-tags into CSS
-        run: unzip -q rampfix.zip -d "$OUT_DIR/addons/counterstrikesharp/"
+        run: unzip -q cs2-tags.zip -d "$OUT_DIR/addons/counterstrikesharp/"
 
       - name: Set up .NET
         uses: actions/setup-dotnet@v4
