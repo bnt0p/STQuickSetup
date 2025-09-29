@@ -173,10 +173,10 @@ jobs:
         uses: softprops/action-gh-release@v2
         with:
           tag_name: ${{ steps.tagger.outputs.tag }}
-          name: CS2 Drop-in Bundles ${{ steps.tagger.outputs.tag }}
+          name: ST drag and drop working ${{ steps.tagger.outputs.tag }}
           body: |
-            Automated bundle build.
-            PoorSharpTimer: branch `${{ env.PST_BRANCH }}`, commit ${{ env.PST_COMMIT }}
+            Bundle that contains MetaMod + CSS (Latest version) + SharpTimer built from Dev version.
+            SharpTimer: branch `${{ env.PST_BRANCH }}`, commit ${{ env.PST_COMMIT }}
 
             **Linux sources**
             - Metamod: ${{ env.METAMOD_URL_LINUX }}
@@ -197,9 +197,15 @@ jobs:
 
             **Structure inside each zip**
             addons/
-              metamod/
-              counterstrikesharp/
-                plugins/poor-sharptimer/
+              - metamod/
+              - counterstrikesharp/
+                - plugins/SharpTimer/
+                - plugins/cs2-tags/
+                - shared/TagsApi/
+                - shared/SharpTimerAPI/
+            cfg/
+              - SharpTimer/
+              - stfixes-metamod/
           files: |
             ${{ env.ZIP_LINUX }}
             ${{ env.ZIP_WINDOWS }}
