@@ -56,23 +56,13 @@ jobs:
 
       - name: Restore & Publish PoorSharpTimer
         run: |
-          dotnet restore pst
-          dotnet build pst
-          ls -la
+          cd pst
+          dotnet build
+          cd -
 
       - name: Place PoorSharpTimer plugin into bundle
         run: |
-          # Create plugins folder and copy produced DLLs
-          PLUG_DIR="$OUT_DIR/addons/counterstrikesharp/plugins/SharpTimer"
-          mkdir -p "$PLUG_DIR"
-          # Copy only the plugin and its project-built dependencies
-          # cp -vR pst/* "$PLUG_DIR" || true
           rsync -avrt pst/Build/ $OUT_DIR
-          #cp -avR pst/Build/cfg/ "$OUT_DIR/cfg/"
-          # (Optional) include configs if repo provides any
-          # if [ -d pst/cfg ]; then
-          #   cp -vr pst/cfg/* "$OUT_DIR/cfg/" || true
-          # fi
 
       - name: Show resulting structure (for logs)
         run: |
@@ -81,8 +71,7 @@ jobs:
 
       - name: Create distributable zip
         run: |
-          cd "$OUT_DIR"
-          zip -r "../$ZIP_NAME" addons
+          zip -r "../$ZIP_NAME" bundle/
           cd -
 
       - name: Upload artifact (CI)
