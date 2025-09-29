@@ -1,0 +1,122 @@
+name: Build Metamod + CounterStrikeSharp + PoorSharpTimer
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [ main ]
+
+permissions:
+  contents: write
+
+env:
+  METAMOD_URL: https://mms.alliedmods.net/mmsdrop/2.0/mmsource-2.0.0-git1366-linux.tar.gz
+  CSS_URL: https://github.com/roflmuffin/CounterStrikeSharp/releases/download/v1.0.340/counterstrikesharp-with-runtime-linux-1.0.340.zip
+  PST_REPO: https://github.com/Letaryat/poor-sharptimer.git
+  PST_BRANCH: dev
+  OUT_DIR: bundle
+  ZIP_NAME: metamod-css-pst-bundle.zip
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout (optional)
+        uses: actions/checkout@v4
+
+      - name: Prep environment
+        run: |
+          sudo apt-get update -y
+          sudo apt-get install -y unzip zip git
+          rm -rf "$OUT_DIR" pst out_pst
+          mkdir -p "$OUT_DIR"
+
+      - name: Download Metamod
+        run: curl -L "$METAMOD_URL" -o mmsource.tar.gz
+
+      - name: Extract Metamod into addons/metamod/
+        run: tar -xzf mmsource.tar.gz -C "$OUT_DIR"
+
+      - name: Download CounterStrikeSharp (with runtime)
+        run: curl -L "$CSS_URL" -o css.zip
+
+      - name: Extract CounterStrikeSharp into bundle
+        run: unzip -q css.zip -d "$OUT_DIR"
+
+      # ---------- PoorSharpTimer (.NET) ----------
+      - name: Set up .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '8.0.x'
+
+      - name: Clone PoorSharpTimer (dev branch)
+        run: |
+          git clone --depth 1 --branch "$PST_BRANCH" "$PST_REPO" pst
+          echo "PST_COMMIT=$(git -C pst rev-parse --short HEAD)" >> "$GITHUB_ENV"
+
+      - name: Restore & Publish PoorSharpTimer
+        run: |
+          dotnet restore pst
+          # Publish as framework-dependent; output to out_pst
+          dotnet publish pst -c Release -o out_pst
+          ls -la out_pst
+
+      - name: Place PoorSharpTimer plugin into bundle
+        run: |
+          # Create plugins folder and copy produced DLLs
+          PLUG_DIR="$OUT_DIR/addons/counterstrikesharp/plugins/poor-sharptimer"
+          mkdir -p "$PLUG_DIR"
+          # Copy only the plugin and its project-built dependencies
+          cp -v out_pst/*.dll "$PLUG_DIR" || true
+          # (Optional) include configs if repo provides any
+          if [ -d pst/config ]; then
+            mkdir -p "$OUT_DIR/addons/counterstrikesharp/configs/poor-sharptimer"
+            cp -vr pst/config/* "$OUT_DIR/addons/counterstrikesharp/configs/poor-sharptimer/" || true
+          fi
+
+      - name: Show resulting structure (for logs)
+        run: |
+          echo "Contents of $OUT_DIR:"
+          find "$OUT_DIR" -maxdepth 3 -type d -print
+
+      - name: Create distributable zip
+        run: |
+          cd "$OUT_DIR"
+          zip -r "../$ZIP_NAME" addons
+          cd -
+
+      - name: Upload artifact (CI)
+        uses: actions/upload-artifact@v4
+        with:
+          name: ${{ env.ZIP_NAME }}
+          path: ${{ env.ZIP_NAME }}
+
+      - name: Create Git tag
+        id: tagger
+        run: |
+          TAG="bundle-${GITHUB_RUN_NUMBER}"
+          echo "tag=$TAG" >> "$GITHUB_OUTPUT"
+
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: ${{ steps.tagger.outputs.tag }}
+          name: Metamod + CounterStrikeSharp + PoorSharpTimer ${{ steps.tagger.outputs.tag }}
+          body: |
+            Automated bundle built by CI.
+
+            Includes:
+            - Metamod: ${{ env.METAMOD_URL }}
+            - CounterStrikeSharp (with runtime): ${{ env.CSS_URL }}
+            - PoorSharpTimer (branch `${{ env.PST_BRANCH }}`, commit ${{ env.PST_COMMIT }})
+
+            Structure:
+            addons/
+              metamod/
+              counterstrikesharp/
+                plugins/poor-sharptimer/*.dll
+                configs/poor-sharptimer/ (if present)
+          files: |
+            ${{ env.ZIP_NAME }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
