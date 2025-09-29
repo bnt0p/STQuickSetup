@@ -15,6 +15,7 @@ env:
   MOVUNLOCKER_LINUX: https://github.com/Source2ZE/MovementUnlocker/releases/download/v1.8/MovementUnlocker-v1.8-linux.tar.gz
   RAMPBUGFIX_LINUX: https://github.com/Interesting-exe/CS2Fixes-RampbugFix/releases/download/9-16/CS2Fixes-RampbugFix-9-16-linux.zip
   
+  CS2_TAGS: https://github.com/schwarper/cs2-tags/releases/download/v1.15/cs2-tags-v1.15.zip
   PST_REPO: https://github.com/Letaryat/poor-sharptimer.git
   PST_BRANCH: dev
   OUT_DIR: bundle
@@ -59,6 +60,18 @@ jobs:
 
       - name: Extract MovementUnlocker into bundle
         run: tar -xvf movunlocker.tar.gz -C "$OUT_DIR"
+
+      - name: Download CS2-RamppBugFix
+        run: curl -L "$RAMPBUGFIX_LINUX" -o rampfix.zip
+
+      - name: Extract CS2-RampBugFix into bundle
+        run: unzip -q rampfix.zip -d "$OUT_DIR"
+
+      - name: Download CS2-TAGS
+        run: curl -L "$CS2_TAGS" -o cs2-tags.zip
+
+      - name: Extract CS2-tags into CSS
+        run: unzip -q rampfix.zip -d "$OUT_DIR/addons/counterstrikesharp/"
 
       - name: Set up .NET
         uses: actions/setup-dotnet@v4
