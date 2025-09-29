@@ -171,7 +171,7 @@ jobs:
         uses: softprops/action-gh-release@v2
         with:
           tag_name: ${{ steps.tagger.outputs.tag }}
-          name: ST drag and drop working ${{ steps.tagger.outputs.tag }}
+          name: ST drag and drop - ${{ steps.tagger.outputs.tag }}
           body: |
             Bundle that contains MetaMod + CSS (Latest version) + SharpTimer built from Dev version.
             SharpTimer: branch `${{ env.PST_BRANCH }}`, commit ${{ env.PST_COMMIT }}
