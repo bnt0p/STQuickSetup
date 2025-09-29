@@ -56,7 +56,8 @@ jobs:
 
       - name: Restore & Publish PoorSharpTimer
         run: |
-          dotnet build
+          dotnet restore pst
+          dotnet build pst
           ls -la
 
       - name: Place PoorSharpTimer plugin into bundle
