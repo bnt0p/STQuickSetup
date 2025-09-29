@@ -133,7 +133,7 @@ jobs:
       - name: Build PoorSharpTimer
         run: |
           cd pst
-          dotnet build -c Release
+          dotnet build
           cd -
 
       - name: Place PoorSharpTimer into both bundles
