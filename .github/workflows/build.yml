@@ -71,7 +71,9 @@ jobs:
 
       - name: Create distributable zip
         run: |
-          zip -r "../$ZIP_NAME" bundle/*
+          cd $OUT_DIR
+          zip -r "../$ZIP_NAME" *
+          cd -
 
       - name: Upload artifact (CI)
         uses: actions/upload-artifact@v4
