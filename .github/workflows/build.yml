@@ -152,8 +152,8 @@ jobs:
 
       - name: Create distributable zips
         run: |
-          (cd "$OUT_LINUX" && zip -r "../$ZIP_LINUX" addons)
-          (cd "$OUT_WINDOWS" && zip -r "../$ZIP_WINDOWS" addons)
+          (cd "$OUT_LINUX" && zip -r "../$ZIP_LINUX" *)
+          (cd "$OUT_WINDOWS" && zip -r "../$ZIP_WINDOWS" *)
 
       - name: Upload artifacts (CI)
         uses: actions/upload-artifact@v4
