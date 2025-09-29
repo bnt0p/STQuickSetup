@@ -64,14 +64,13 @@ jobs:
       - name: Place PoorSharpTimer plugin into bundle
         run: |
           # Create plugins folder and copy produced DLLs
-          PLUG_DIR="$OUT_DIR/addons/counterstrikesharp/plugins/poor-sharptimer"
+          PLUG_DIR="$OUT_DIR/addons/counterstrikesharp/plugins/SharpTimer"
           mkdir -p "$PLUG_DIR"
           # Copy only the plugin and its project-built dependencies
-          cp -v out_pst/*.dll "$PLUG_DIR" || true
+          cp -v out_pst/* "$PLUG_DIR" || true
           # (Optional) include configs if repo provides any
-          if [ -d pst/config ]; then
-            mkdir -p "$OUT_DIR/addons/counterstrikesharp/configs/poor-sharptimer"
-            cp -vr pst/config/* "$OUT_DIR/addons/counterstrikesharp/configs/poor-sharptimer/" || true
+          if [ -d pst/cfg ]; then
+            cp -vr pst/cfg/* "$OUT_DIR/cfg/" || true
           fi
 
       - name: Show resulting structure (for logs)
