@@ -8,15 +8,15 @@ permissions:
 
 env:
   # Linux sources
-  METAMOD_URL_LINUX: https://mms.alliedmods.net/mmsdrop/2.0/mmsource-2.0.0-git1366-linux.tar.gz
-  CSS_URL_LINUX: https://github.com/roflmuffin/CounterStrikeSharp/releases/download/v1.0.340/counterstrikesharp-with-runtime-linux-1.0.340.zip
+  METAMOD_URL_LINUX: https://mms.alliedmods.net/mmsdrop/2.0/mmsource-2.0.0-git1367-linux.tar.gz
+  CSS_URL_LINUX: https://github.com/roflmuffin/CounterStrikeSharp/releases/download/v1.0.342/counterstrikesharp-with-runtime-linux-1.0.342.zip
   STFIXES_LINUX: https://github.com/SharpTimer/STFixes-metamod/releases/download/9-23/stfixes-metamod-9-23-linux.zip
   MOVUNLOCKER_LINUX: https://github.com/Source2ZE/MovementUnlocker/releases/download/v1.8/MovementUnlocker-v1.8-linux.tar.gz
   RAMPBUGFIX_LINUX: https://github.com/Interesting-exe/CS2Fixes-RampbugFix/releases/download/9-16/CS2Fixes-RampbugFix-9-16-linux.zip
 
   # Windows sources
-  METAMOD_URL_WINDOWS: https://mms.alliedmods.net/mmsdrop/2.0/mmsource-2.0.0-git1366-windows.zip
-  CSS_URL_WINDOWS: https://github.com/roflmuffin/CounterStrikeSharp/releases/download/v1.0.340/counterstrikesharp-with-runtime-windows-1.0.340.zip
+  METAMOD_URL_WINDOWS: https://mms.alliedmods.net/mmsdrop/2.0/mmsource-2.0.0-git1367-windows.zip
+  CSS_URL_WINDOWS: https://github.com/roflmuffin/CounterStrikeSharp/releases/download/v1.0.342/counterstrikesharp-with-runtime-windows-1.0.342.zip
   STFIXES_WINDOWS: https://github.com/SharpTimer/STFixes-metamod/releases/download/9-23/stfixes-metamod-9-23-windows.zip
   MOVUNLOCKER_WINDOWS: https://github.com/Source2ZE/MovementUnlocker/releases/download/v1.8/MovementUnlocker-v1.8-windows.zip
   RAMPBUGFIX_WINDOWS: https://github.com/Interesting-exe/CS2Fixes-RampbugFix/releases/download/9-16/CS2Fixes-RampbugFix-9-16-windows.zip
