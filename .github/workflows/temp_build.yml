@@ -1,4 +1,4 @@
-name: Bundle Metamod + CounterStrikeSharp + PoorSharpTimer (Linux & Windows)
+name: (TEMP FIX) Bundle Metamod + CounterStrikeSharp + PoorSharpTimer (Linux & Windows)
 
 on:
   workflow_dispatch:
