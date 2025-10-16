@@ -68,12 +68,6 @@ jobs:
       - name: Extract MovementUnlocker (Linux)
         run: tar -xzf mu_linux.tar.gz -C "$OUT_LINUX"
 
-      - name: Download RampBugFix (Linux)
-        run: curl -L "$RAMPBUGFIX_LINUX" -o ramp_linux.zip
-
-      - name: Extract RampBugFix (Linux)
-        run: unzip -q ramp_linux.zip -d "$OUT_LINUX"
-
       - name: Download CS2-Tags (common)
         run: curl -L "$CS2_TAGS" -o cs2-tags.zip
 
@@ -93,23 +87,11 @@ jobs:
       - name: Extract CounterStrikeSharp (Windows)
         run: unzip -q css_win.zip -d "$OUT_WINDOWS"
 
-      - name: Download STFixes (Windows)
-        run: curl -L "$STFIXES_WINDOWS" -o stfixes_win.zip
-
-      - name: Extract STFixes (Windows)
-        run: unzip -q stfixes_win.zip -d "$OUT_WINDOWS"
-
       - name: Download MovementUnlocker (Windows)
         run: curl -L "$MOVUNLOCKER_WINDOWS" -o mu_win.zip
 
       - name: Extract MovementUnlocker (Windows)
         run: unzip -q mu_win.zip -d "$OUT_WINDOWS"
-
-      - name: Download RampBugFix (Windows)
-        run: curl -L "$RAMPBUGFIX_WINDOWS" -o ramp_win.zip
-
-      - name: Extract RampBugFix (Windows)
-        run: unzip -q ramp_win.zip -d "$OUT_WINDOWS"
 
       - name: Extract CS2-Tags into CSS (Windows)
         run: unzip -q cs2-tags.zip -d "$OUT_WINDOWS/addons/counterstrikesharp/"
