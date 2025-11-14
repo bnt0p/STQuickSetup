@@ -72,10 +72,10 @@ jobs:
         run: tar -xzf mu_linux.tar.gz -C "$OUT_LINUX"
 
       - name: Download RampBugFix (Linux)
-        run: curl -L "$RAMPBUGFIX_LINUX" -o ramp_linux.tar.gz
+        run: curl -L "$RAMPBUGFIX_LINUX" -o ramp_linux.zip
 
       - name: Extract RampBugFix (Linux)
-        run: tar -xzf ramp_linux.tar.gz -C "$OUT_LINUX"
+        run: unzip -q ramp_linux.zip -d "$OUT_LINUX"
 
       - name: Download CS2-Tags (common)
         run: curl -L "$CS2_TAGS" -o cs2-tags.zip
