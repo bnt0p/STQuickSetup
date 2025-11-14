@@ -60,10 +60,10 @@ jobs:
         run: unzip -q css_linux.zip -d "$OUT_LINUX"
 
       - name: Download STFixes (Linux)
-        run: curl -L "$STFIXES_LINUX" -o stfixes_linux.zip
+        run: curl -L "$STFIXES_LINUX" -o stfixes_linux.tar.gz
 
       - name: Extract STFixes (Linux)
-        run: unzip -q stfixes_linux.zip -d "$OUT_LINUX"
+        run: tar -xzf stfixes_linux.tar.gz -C "$OUT_LINUX"
 
       - name: Download MovementUnlocker (Linux)
         run: curl -L "$MOVUNLOCKER_LINUX" -o mu_linux.tar.gz
@@ -97,10 +97,10 @@ jobs:
         run: unzip -q css_win.zip -d "$OUT_WINDOWS"
 
       - name: Download STFixes (Windows)
-        run: curl -L "$STFIXES_WINDOWS" -o stfixes_win.zip
+        run: curl -L "$STFIXES_WINDOWS" -o stfixes_win.tar.gz
 
       - name: Extract STFixes (Windows)
-        run: unzip -q stfixes_win.zip -d "$OUT_WINDOWS"
+        run: tar -xzf stfixes_win.tar.gz -C "$OUT_LINUX"
 
       - name: Download MovementUnlocker (Windows)
         run: curl -L "$MOVUNLOCKER_WINDOWS" -o mu_win.zip
@@ -109,10 +109,10 @@ jobs:
         run: unzip -q mu_win.zip -d "$OUT_WINDOWS"
 
       - name: Download RampBugFix (Windows)
-        run: curl -L "$RAMPBUGFIX_WINDOWS" -o ramp_win.zip
+        run: curl -L "$RAMPBUGFIX_WINDOWS" -o ramp_win.tar.gz
 
       - name: Extract RampBugFix (Windows)
-        run: unzip -q ramp_win.zip -d "$OUT_WINDOWS"
+        run: tar -xzf ramp_win.tar.gz -C "$OUT_WINDOWS"
 
       - name: Extract CS2-Tags into CSS (Windows)
         run: unzip -q cs2-tags.zip -d "$OUT_WINDOWS/addons/counterstrikesharp/"
