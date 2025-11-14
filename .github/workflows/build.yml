@@ -179,16 +179,16 @@ jobs:
             **Linux sources**
             - Metamod: ${{ env.METAMOD_URL_LINUX }}
             - CounterStrikeSharp: ${{ env.CSS_URL_LINUX }}
-            - STFixes: ${{ env.STFIXES_LINUX }}
+            - STFixes: ${{ env.STFIXES_LINUX }} (using my own URL as its from Actions tab so it requires login)
             - MovementUnlocker: ${{ env.MOVUNLOCKER_LINUX }}
-            - RampBugFix: ${{ env.RAMPBUGFIX_LINUX }}
+            - RampBugFix: ${{ env.RAMPBUGFIX_LINUX }} (using my own URL as its from Actions tab so it requires login)
 
             **Windows sources**
             - Metamod: ${{ env.METAMOD_URL_WINDOWS }}
             - CounterStrikeSharp: ${{ env.CSS_URL_WINDOWS }}
-            - STFixes: ${{ env.STFIXES_WINDOWS }}
+            - STFixes: ${{ env.STFIXES_WINDOWS }} (using my own URL as its from Actions tab so it requires login)
             - MovementUnlocker: ${{ env.MOVUNLOCKER_WINDOWS }}
-            - RampBugFix: ${{ env.RAMPBUGFIX_WINDOWS }}
+            - RampBugFix: ${{ env.RAMPBUGFIX_WINDOWS }} (using my own URL as its from Actions tab so it requires login)
 
             **Common**
             - CS2-Tags: ${{ env.CS2_TAGS }}
