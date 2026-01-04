@@ -9,21 +9,21 @@ permissions:
 env:
   # Linux sources
   METAMOD_URL_LINUX: https://mms.alliedmods.net/mmsdrop/2.0/mmsource-2.0.0-git1374-linux.tar.gz
-  CSS_URL_LINUX: https://github.com/roflmuffin/CounterStrikeSharp/releases/download/v1.0.352/counterstrikesharp-with-runtime-linux-1.0.352.zip
+  CSS_URL_LINUX: https://github.com/roflmuffin/CounterStrikeSharp/releases/download/v1.0.355/counterstrikesharp-with-runtime-linux-1.0.355.zip
   STFIXES_LINUX: https://assets.bnt0p.dev/stfixes-linux.zip
   MOVUNLOCKER_LINUX: https://github.com/Source2ZE/MovementUnlocker/releases/download/v1.9/MovementUnlocker-v1.9-linux.tar.gz
   RAMPBUGFIX_LINUX: https://assets.bnt0p.dev/rampbugfix-linux.zip
 
   # Windows sources
   METAMOD_URL_WINDOWS: https://mms.alliedmods.net/mmsdrop/2.0/mmsource-2.0.0-git1374-windows.zip
-  CSS_URL_WINDOWS: https://github.com/roflmuffin/CounterStrikeSharp/releases/download/v1.0.352/counterstrikesharp-with-runtime-windows-1.0.352.zip
+  CSS_URL_WINDOWS: https://github.com/roflmuffin/CounterStrikeSharp/releases/download/v1.0.355/counterstrikesharp-with-runtime-windows-1.0.355.zip
   STFIXES_WINDOWS: https://assets.bnt0p.dev/stfixes-windows.zip
   MOVUNLOCKER_WINDOWS: https://github.com/Source2ZE/MovementUnlocker/releases/download/v1.9/MovementUnlocker-v1.9-windows.zip
   RAMPBUGFIX_WINDOWS: https://assets.bnt0p.dev/rampbugfix-windows.zip
 
   # Common extras
   CS2_TAGS: https://github.com/schwarper/cs2-tags/releases/download/v1.15/cs2-tags-v1.15.zip
-  PST_REPO: https://github.com/Letaryat/poor-sharptimer.git
+  PST_REPO: https://github.com/bnt0p/poor-sharptimer.git
   PST_BRANCH: dev
 
   # Output names
